@@ -1,5 +1,6 @@
 package com.employeecrud.controller;
 
+import com.employeecrud.exception.InvalidInputException;
 import com.employeecrud.model.Employee;
 import com.employeecrud.service.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +24,20 @@ class EmployeeControllerTest {
 
         // pass in services injected in the employee controller
         employeeController = new EmployeeController(employeeService);
+    }
+
+    @Test
+    public void createEmployee_shouldCreateEmployee() {
+        // arrange
+        Employee postBodyInput = new Employee(null, "Valeria", "Meza", "email@email.com");
+        Employee expected = new Employee(1L, "Valeria", "Meza", "email@email.com");
+        Mockito.when(employeeService.save(Mockito.any())).thenReturn(expected);
+
+        // act
+        Employee response = employeeController.saveEmployee(postBodyInput);
+
+        // assert
+        assertEquals(expected, response);
     }
 
     @Test
@@ -52,5 +67,33 @@ class EmployeeControllerTest {
         // assert
         assertEquals(expected, response);
     }
+
+    @Test
+    public void updateEmployee_shouldCallServiceAndReturnUpdatedRecord() {
+        // arrange
+        Employee postBodyInput = new Employee(1L, "Valeria", "Meza", "Email");
+        Mockito.when(employeeService.update(postBodyInput, 1L)).thenReturn(postBodyInput);
+
+        // act
+        Employee response = employeeController.updateEmployee(postBodyInput, 1L);
+
+        // assert
+        Mockito.verify(employeeService).update(postBodyInput, 1L);
+        assertEquals(postBodyInput, response);
+    }
+
+    @Test
+    public void getEmployeeById_shouldReturnEmployeeWithCorrespondingId() {
+        // arrange
+        Employee existing = new Employee(1L, "Valeria", "Meza", "email@email.com");
+        Mockito.when(employeeService.getById(1L)).thenReturn(existing);
+
+        // act
+        Employee response = employeeController.getEmployeeById(1L);
+
+        // assert
+        assertEquals(existing, response);
+    }
+    
 
 }

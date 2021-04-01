@@ -1,5 +1,9 @@
 package com.employeecrud.model;
 
+import com.sun.istack.NotNull;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,33 +11,36 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long id;
 
     @Column(name = "first_name")
+    @NotNull
     private String firstName;
 
     @Column(name = "last_name")
+    @NotNull
     private String lastName;
 
     @Column(name = "email")
+    @NotNull
     private String email;
 
     public Employee() {
     }
 
-    public Employee(long id, String firstName, String lastName, String email) {
-        Id = id;
+    public Employee(Long id, String firstName, String lastName, String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public long getId() {
-        return Id;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(long id) {
-        Id = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
