@@ -46,30 +46,30 @@ public class EmployeeControllerIT {
 
     @Test
     public void getAllEmployees_returnsStatus200() throws Exception {
-        mockMvc.perform(get("/employees")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/employees")).andExpect(status().isOk());
     }
 
     @Test
     public void getAllEmployees_callsEmployeeService() throws Exception {
-        mockMvc.perform(get("/employees")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/employees")).andExpect(status().isOk());
         Mockito.verify(employeeService).getEmployees();
     }
 
     @Test
     public void getEmployeeById_returnsStatus200() throws  Exception {
-        mockMvc.perform(get("/employees/1")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/employees/1")).andExpect(status().isOk());
     }
 
     @Test
     public void getEmployeeById_callsEmployeeService() throws Exception {
-        mockMvc.perform(get("/employees/1")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/employees/1")).andExpect(status().isOk());
         Mockito.verify(employeeService).getById(1L);
     }
 
     @Test
     public void saveEmployee_returns201Status() throws Exception {
         String testBody = new ObjectMapper().writeValueAsString(employee);
-        mockMvc.perform(post("/employees")
+        mockMvc.perform(post("/api/employees")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(testBody)
         ).andExpect(status().isCreated());
@@ -82,7 +82,7 @@ public class EmployeeControllerIT {
     public void updateEmployee_returns200Status() throws Exception {
         employee.setId(1L);
         String testBody = new ObjectMapper().writeValueAsString(employee);
-        mockMvc.perform(put("/employees/update")
+        mockMvc.perform(put("/api/employees/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(testBody)
         ).andExpect(status().isOk());
@@ -93,7 +93,7 @@ public class EmployeeControllerIT {
 
     @Test
     public void deleteEmployeeById_Returns204Status() throws Exception {
-        mockMvc.perform(delete("/employees/1")).andExpect(status().isNoContent());
+        mockMvc.perform(delete("/api/employees/1")).andExpect(status().isNoContent());
         Mockito.verify(employeeService).delete(1L);
     }
 }
