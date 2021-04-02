@@ -23,7 +23,7 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Employee update(Employee employee, long id) {
+    public Employee update(Employee employee) {
         return employeeRepository.save(employee);
     }
 

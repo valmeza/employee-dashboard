@@ -75,13 +75,13 @@ class EmployeeControllerTest {
     public void updateEmployee_shouldCallServiceAndReturnUpdatedRecord() {
         // arrange
         Employee postBodyInput = new Employee(1L, "Valeria", "Meza", "Email");
-        Mockito.when(employeeService.update(postBodyInput, 1L)).thenReturn(postBodyInput);
+        Mockito.when(employeeService.update(postBodyInput)).thenReturn(postBodyInput);
 
         // act
-        Employee response = employeeController.updateEmployee(postBodyInput, 1L);
+        Employee response = employeeController.updateEmployee(postBodyInput);
 
         // assert
-        Mockito.verify(employeeService).update(postBodyInput, 1L);
+        Mockito.verify(employeeService).update(postBodyInput);
         assertEquals(postBodyInput, response);
     }
 

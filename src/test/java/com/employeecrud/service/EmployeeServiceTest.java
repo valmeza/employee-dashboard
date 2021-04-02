@@ -64,7 +64,7 @@ class EmployeeServiceTest {
         Mockito.when(employeeRepository.save(input)).thenReturn(expected);
 
         // act
-        Employee response = employeeService.update(input, 1L);
+        Employee response = employeeService.update(input);
 
         // assert
         Mockito.verify(employeeRepository).save(input);
