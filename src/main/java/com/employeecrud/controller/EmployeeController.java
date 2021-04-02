@@ -30,5 +30,7 @@ public class EmployeeController {
         return employeeService.update(employee, id);
     }
 
-
+    public void deleteEmployeeById(long id) {
+        employeeService.delete(id);
+    }
 }

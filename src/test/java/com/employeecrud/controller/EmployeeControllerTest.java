@@ -26,6 +26,7 @@ class EmployeeControllerTest {
         employeeController = new EmployeeController(employeeService);
     }
 
+    
     @Test
     public void createEmployee_shouldCreateEmployee() {
         // arrange
@@ -40,6 +41,7 @@ class EmployeeControllerTest {
         assertEquals(expected, response);
     }
 
+
     @Test
     public void getAllEmployees_shouldReturnEmptyListIfEmpty() {
         // arrange
@@ -52,6 +54,7 @@ class EmployeeControllerTest {
         // assert
         assertEquals(expected, response);
     }
+
 
     @Test
     public void getAllEmployees_shouldReturnAListOfEmployees() {
@@ -68,6 +71,7 @@ class EmployeeControllerTest {
         assertEquals(expected, response);
     }
 
+
     @Test
     public void updateEmployee_shouldCallServiceAndReturnUpdatedRecord() {
         // arrange
@@ -82,6 +86,7 @@ class EmployeeControllerTest {
         assertEquals(postBodyInput, response);
     }
 
+
     @Test
     public void getEmployeeById_shouldReturnEmployeeWithCorrespondingId() {
         // arrange
@@ -94,6 +99,15 @@ class EmployeeControllerTest {
         // assert
         assertEquals(existing, response);
     }
-    
 
+
+    @Test
+    public void deleteEmployeeById_shouldDeleteEmployee() {
+        // arrange
+        long id = 1L;
+        // act
+        employeeController.deleteEmployeeById(id);
+        // assert
+        Mockito.verify(employeeService).delete(1L);
+    }
 }

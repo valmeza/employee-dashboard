@@ -20,4 +20,7 @@ public class EmployeeService {
     public Employee getById(long id) {
         return null;
     }
+
+    public void delete(long id) {
+    }
 }
