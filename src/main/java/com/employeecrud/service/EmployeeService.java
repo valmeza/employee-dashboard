@@ -1,26 +1,43 @@
 package com.employeecrud.service;
 
+import com.employeecrud.exception.EmployeeNotFoundException;
 import com.employeecrud.model.Employee;
+import com.employeecrud.repository.EmployeeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class EmployeeService {
+
+    private EmployeeRepository employeeRepository;
+
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
     public List<Employee> getEmployees() {
-        return null;
+        return employeeRepository.findAll();
     }
 
     public Employee save(Employee employee) {
-        return null;
+        return employeeRepository.save(employee);
     }
 
     public Employee update(Employee employee, long id) {
-        return null;
+        return employeeRepository.save(employee);
     }
 
     public Employee getById(long id) {
-        return null;
+        Optional<Employee> employee = employeeRepository.findById(id);
+
+        if(employee.isEmpty()) {
+            throw new EmployeeNotFoundException("There is no employee with that id.");
+        }
+
+        return employee.get();
     }
 
     public void delete(long id) {
+        employeeRepository.deleteById(id);
     }
 }

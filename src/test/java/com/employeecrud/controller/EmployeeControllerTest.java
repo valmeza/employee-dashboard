@@ -1,6 +1,5 @@
 package com.employeecrud.controller;
 
-import com.employeecrud.exception.InvalidInputException;
 import com.employeecrud.model.Employee;
 import com.employeecrud.service.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +25,7 @@ class EmployeeControllerTest {
         employeeController = new EmployeeController(employeeService);
     }
 
-    
+
     @Test
     public void createEmployee_shouldCreateEmployee() {
         // arrange
