@@ -13,6 +13,8 @@
 #        dialect: org.hibernate.dialect.MySQL5Dialect
 
 spring:
+  application:
+    name: employee-crud
   h2:
     console:
       enabled: true
@@ -22,3 +24,16 @@ spring:
     username: sa
     password:
     driverClassName: org.h2.Driver
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8661/eureka/
+
+  instance:
+    hostname: localhost
+
+server:
+  port: 8888
