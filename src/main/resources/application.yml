@@ -12,9 +12,12 @@
 #      hibernate:
 #        dialect: org.hibernate.dialect.MySQL5Dialect
 
+server:
+  port: 8888
+
 spring:
   application:
-    name: employee-crud
+    name: employee-crud-service
   h2:
     console:
       enabled: true
@@ -31,9 +34,5 @@ eureka:
     fetch-registry: true
     serviceUrl:
       defaultZone: http://localhost:8661/eureka/
-
   instance:
     hostname: localhost
-
-server:
-  port: 8888
