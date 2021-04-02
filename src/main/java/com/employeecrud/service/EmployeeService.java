@@ -3,10 +3,12 @@ package com.employeecrud.service;
 import com.employeecrud.exception.EmployeeNotFoundException;
 import com.employeecrud.model.Employee;
 import com.employeecrud.repository.EmployeeRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class EmployeeService {
 
     private EmployeeRepository employeeRepository;
