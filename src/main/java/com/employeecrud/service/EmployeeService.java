@@ -32,7 +32,7 @@ public class EmployeeService {
     public Employee getById(long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
 
-        if(employee.isEmpty()) {
+        if(!employee.isPresent()) {
             throw new EmployeeNotFoundException("There is no employee with that id.");
         }
 
