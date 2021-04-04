@@ -1,5 +1,7 @@
 server.port: ${PORT:8888}
 
+spring.application.name: employee-crud-service
+
 eureka:
   instance:
     hostname: ${DOMAIN_NAME:localhost}
